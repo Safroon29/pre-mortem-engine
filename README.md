@@ -99,7 +99,7 @@ The records available in the history depend on the application's database struct
 | MySQL | Relational database |
 | HTML | Web page structure |
 | CSS | Interface styling |
-
+| JDBC | Database Connectivity |
 
 The final technology list should reflect the libraries and frameworks actually used in the application.
 
