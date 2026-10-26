@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create Project | Pre-Mortem Engine</title><link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div th:replace="~{fragments :: nav}"></div>
+<main class="container narrow">
+  <section class="page-heading">
+    <div><div class="eyebrow">PROJECT WORKSPACE / NEW PROJECT</div><h1>Create a <span>project.</span></h1>
+      <p class="muted">Add the basic details, attach a project brief if you have one, and save. You can open the project later to scan source files and create risk assessments.</p>
+    </div>
+  </section>
+  <div class="notice error" th:if="${error}" th:text="${error}"></div>
+  <div class="notice success" th:if="${createdProjectId}">The project record was saved. You can continue without the optional document, or <a th:href="@{/projects/{id}(id=${createdProjectId})}">open the saved project</a>.</div>
+  <form th:action="@{/projects}" th:object="${form}" method="post" enctype="multipart/form-data" class="panel form-panel stack">
+    <div class="form-section">
+      <h2>01 / Project details</h2>
+      <p class="muted small">Project name, type and description are required. This creates a new project record in your account.</p>
+      <label for="projectName">Project name <span aria-hidden="true">*</span>
+        <input id="projectName" th:field="*{projectName}" required maxlength="140" placeholder="e.g. Lindora Campus Assistant">
+      </label>
+      <label for="projectType">Project type <span aria-hidden="true">*</span>
+        <select id="projectType" th:field="*{projectType}" required>
+          <option value="Software">Software</option><option value="Research">Research</option><option value="Business">Business</option><option value="Event">Event</option><option value="Academic">Academic</option><option value="Other">Other</option>
+        </select>
+      </label>
+      <label for="description">Project description <span aria-hidden="true">*</span>
+        <textarea id="description" th:field="*{description}" required rows="5" maxlength="8000" placeholder="What are you building? Who will use it? What should it achieve? Mention important features or dependencies."></textarea>
+      </label>
+    </div>
+    <div class="form-section">
+      <h2>02 / Supporting document <span class="pill">OPTIONAL</span></h2>
+      <p class="muted small">Attach a project brief, proposal, README or requirements document. Accepted formats: Word (.doc, .docx), PDF, TXT, Markdown (.md), RTF. Maximum 10 MB.</p>
+      <label for="supportingDocument">Choose a document
+        <input id="supportingDocument" type="file" name="supportingDocument" accept=".doc,.docx,.pdf,.txt,.md,.rtf,application/pdf,text/plain">
+      </label>
+      <p class="muted small" id="documentNameHint">No document selected. You can add one later by editing this project in a future update.</p>
+    </div>
+    <div class="form-actions"><a class="btn secondary" th:href="@{/projects}">Cancel</a><button class="btn primary" type="submit">Save Project →</button></div>
+  </form>
+</main>
+<script>
+const documentInput = document.getElementById('supportingDocument');
+const documentHint = document.getElementById('documentNameHint');
+documentInput.addEventListener('change', () => {
+  const file = documentInput.files && documentInput.files[0];
+  documentHint.textContent = file ? `${file.name} · ${(file.size / 1024 / 1024).toFixed(2)} MB` : 'No document selected.';
+});
+</script>
+</body></html>

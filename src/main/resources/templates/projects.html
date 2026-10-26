@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Projects | Pre-Mortem Engine</title><link rel="stylesheet" th:href="@{/css/app.css}"></head>
+<body><div th:replace="~{fragments :: nav}"></div><main class="container">
+<section class="page-heading"><div><div class="eyebrow">WORKSPACE / PROJECTS</div><h1>Your <span>projects.</span></h1><p class="muted">Create and manage project records independently from risk assessments.</p></div><a class="btn primary" th:href="@{/create-project}">＋ Create Project</a></section>
+<div class="notice" th:if="${param.created}">Project created successfully.</div>
+<section class="panel"><div class="panel-head"><div><h2>Project register</h2><p class="muted">Projects you have created</p></div><span class="pill" th:text="${#lists.size(projects)} + ' projects'">0 projects</span></div>
+<div th:if="${#lists.isEmpty(projects)}" class="empty"><div class="empty-icon">▧</div><h3>No projects yet</h3><p class="muted">Create your first project here. This does not create an assessment.</p><a class="btn primary" th:href="@{/create-project}">Create your first project</a></div>
+<div class="table-wrap" th:unless="${#lists.isEmpty(projects)}"><table><thead><tr><th>Project name</th><th>Type</th><th>Description</th><th>Created</th><th></th></tr></thead><tbody><tr th:each="p : ${projects}"><td><strong th:text="${p.projectName}">Project</strong></td><td th:text="${p.projectType}">Software</td><td th:text="${p.description}">Description</td><td th:text="${#temporals.format(p.createdAt, 'dd MMM yyyy')}">Date</td><td><a class="text-link" th:href="@{/projects/{id}(id=${p.id})}">Open →</a></td></tr></tbody></table></div></section>
+</main></body></html>

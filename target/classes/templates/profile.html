@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Profile | Pre-Mortem Engine</title><link rel="stylesheet" th:href="@{/css/app.css}"></head>
+<body><div th:replace="~{fragments :: nav}"></div>
+<main class="container narrow">
+  <section class="page-heading"><div><div class="eyebrow">ACCOUNT / PROFILE</div><h1>Your profile</h1><p class="muted">Account details and workspace activity.</p></div></section>
+  <section class="panel"><div class="profile-card"><div class="profile-avatar" th:text="${#strings.substring(profile.displayName,0,1).toUpperCase()}">U</div><div><h2 th:text="${profile.displayName}" style="margin:0 0 4px">User</h2><div class="profile-meta">Pre-Mortem Engine member</div></div></div>
+  <div style="margin-top:26px"><div class="profile-row"><span>Display name</span><strong th:text="${profile.displayName}">Name</strong></div><div class="profile-row"><span>Email address</span><strong th:text="${profile.email}">email@example.com</strong></div><div class="profile-row"><span>Account role</span><strong th:text="${profile.role}">USER</strong></div><div class="profile-row"><span>Saved risk findings</span><strong th:text="${assessmentCount}">0</strong></div></div>
+  <div class="form-actions"><span class="muted small">Password is never displayed in your profile.</span><a class="btn primary" th:href="@{/assessments}">View history →</a></div></section>
+</main></body></html>

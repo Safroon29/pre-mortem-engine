@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Sign in | Pre-Mortem Engine</title><link rel="stylesheet" th:href="@{/css/app.css}"></head>
+<body class="auth-page"><main class="auth-card"><a class="brand" th:href="@{/login}"><span class="brand-mark">P</span> Pre-Mortem <b>Engine</b></a><div class="eyebrow">PLAN FOR WHAT COULD GO WRONG</div><h1>Welcome back</h1><p class="muted">Sign in to review and manage your project risks.</p>
+<div class="notice success" th:if="${param.registered}">Account created. You can sign in now.</div><div class="notice" th:if="${param.logout}">You have signed out.</div><div class="notice error" th:if="${param.error}">Email or password was incorrect.</div>
+<form th:action="@{/login}" method="post" class="stack"><label>Email address<input type="email" name="email" required autocomplete="username" placeholder="you@example.com"></label><label>Password<input type="password" name="password" required autocomplete="current-password" placeholder="Your password"></label><button class="btn primary full" type="submit">Sign in</button></form>
+<p class="auth-foot">New here? <a th:href="@{/register}">Create an account</a></p></main></body></html>

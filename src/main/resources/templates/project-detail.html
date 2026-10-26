@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Project Details | Pre-Mortem Engine</title><link rel="stylesheet" th:href="@{/css/app.css}"></head><body><div th:replace="~{fragments :: nav}"></div><main class="container narrow">
+<section class="page-heading"><div><div class="eyebrow">PROJECT REGISTER / DETAILS</div><h1 th:text="${project.projectName}">Project name</h1><p class="muted">Project record</p></div><a class="btn secondary" th:href="@{/projects}">← All projects</a></section>
+<section class="panel form-panel stack"><div class="form-section"><span class="pill" th:text="${project.projectType}">Software</span><h2>Project description</h2><p th:text="${project.description}">Description</p><p class="muted small">Created <span th:text="${#temporals.format(project.createdAt, 'dd MMM yyyy, HH:mm')}">date</span></p>
+<p th:if="${project.documentName != null}" class="document-attachment">📎 Supporting document: <strong th:text="${project.documentName}">brief.docx</strong> · <a th:href="@{/projects/{id}/document(id=${project.id})}">Download document</a></p>
+<p th:if="${project.documentName == null}" class="muted small">No supporting document was attached to this project.</p></div><div class="form-actions"><a class="btn secondary" th:href="@{/assessments}">View assessment reports</a><a class="btn primary" th:href="@{/project-analysis}">Scan project files →</a></div></section>
+</main></body></html>

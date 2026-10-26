@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<aside th:fragment="nav" class="sidebar">
+  <a class="brand" th:href="@{/dashboard}"><span class="brand-mark">P</span><span>Pre-Mortem<br><b>Engine</b></span></a>
+  <div class="side-caption">WORKSPACE</div>
+  <nav class="side-nav">
+    <a th:href="@{/dashboard}" th:classappend="${activePage == 'dashboard' ? ' active' : ''}"><span>◫</span> Dashboard</a>
+    <a th:href="@{/create-project}" th:classappend="${activePage == 'create' ? ' active' : ''}"><span>＋</span> Create Project</a>
+    <a th:href="@{/projects}" th:classappend="${activePage == 'projects' ? ' active' : ''}"><span>▧</span> My Projects</a>
+    <a th:href="@{/project-analysis}" th:classappend="${activePage == 'scan' ? ' active' : ''}"><span>⌕</span> Scan Project</a>
+    <a th:href="@{/assessments}" th:classappend="${activePage == 'assessment' ? ' active' : ''}"><span>◈</span> Assessment Reports</a>
+    <a th:href="@{/simulations}" th:classappend="${activePage == 'simulations' ? ' active' : ''}"><span>⟳</span> What-if Simulations</a>
+  </nav>
+  <div class="side-bottom"><button class="theme-toggle" type="button" id="themeToggle" aria-label="Toggle light and dark theme"><span id="themeIcon">☾</span><span id="themeLabel">Dark theme</span></button><div class="side-caption">ACCOUNT</div><a th:href="@{/profile}" th:classappend="${activePage == 'profile' ? ' active' : ''}"><span>◉</span> Profile</a>
+    <form th:action="@{/logout}" method="post" class="side-logout"><button type="submit"><span>↗</span> Log out</button></form>
+    <div class="sidebar-foot"><span class="brand-mark small-mark">P</span><div><b>Pre-Mortem Engine</b><small>Project intelligence</small></div></div>
+  </div>
+<script th:src="@{/js/app.js}"></script>
+</aside>
+</body></html>
